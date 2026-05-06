@@ -642,133 +642,249 @@
         @media print {
             @page {
                 size: A4 landscape;
-                margin: 8mm;
+                margin: 6mm 5mm;
+            }
+            
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
             }
             
             html, body { 
-                background: white; 
-                padding: 0; 
-                margin: 0;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
+                background: white !important; 
+                padding: 0 !important; 
+                margin: 0 !important;
+                font-size: 9px !important;
             }
             
             .page { 
-                box-shadow: none; 
-                max-width: 100%; 
-                padding: 5px;
-                border-radius: 0;
+                box-shadow: none !important; 
+                max-width: 100% !important;
+                width: 100% !important;
+                padding: 0 !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
             }
             
-            /* إخفاء الأزرار والعناصر التفاعلية */
+            /* ═══ إخفاء العناصر التفاعلية ═══ */
             .btn-print, .btn-add, .btn-remove, .btn-calc, .btn-backup, .btn-restore, 
             .action-buttons, .img-placeholder, .preset-select,
-            .warnings-box { display: none !important; }
+            .warnings-box, .lightbox { 
+                display: none !important; 
+            }
             
             /* عمود الحذف يختفى */
             #loading_table th:last-child, #loading_table td:last-child,
-            #deposit_table th:last-child, #deposit_table td:last-child { display: none !important; }
+            #deposit_table th:last-child, #deposit_table td:last-child { 
+                display: none !important; 
+            }
             
-            /* الـ inputs بدون حدود فى الطباعة */
+            /* ═══ الـ inputs بدون حدود ═══ */
             td input, td select, .info-input { 
                 border: none !important; 
                 background: transparent !important;
-                padding: 2px !important;
+                padding: 1px !important;
+                font-size: inherit !important;
+                box-shadow: none !important;
+                outline: none !important;
             }
             
-            /* الجداول تتمدد بكل العرض */
+            /* ═══ الجداول - الإصلاح الأساسى ═══ */
             .table-wrap { 
-                border: none; 
+                border: none !important; 
                 overflow: visible !important;
+                margin: 3px 0 !important;
             }
             table { 
-                min-width: auto !important; 
-                width: 100%;
-                font-size: 10px;
+                min-width: 0 !important; 
+                width: 100% !important;
+                table-layout: auto !important;
+                font-size: 8.5px !important;
+                border-collapse: collapse !important;
             }
+            
+            /* إلغاء الـ widths الثابتة لكل الأعمدة */
+            #loading_table th, #loading_table td,
+            #deposit_table th, #deposit_table td,
+            #financial_table th, #financial_table td {
+                width: auto !important;
+                min-width: 0 !important;
+                max-width: none !important;
+            }
+            
             th { 
-                padding: 4px 2px !important; 
-                font-size: 10px !important;
+                padding: 3px 1px !important; 
+                font-size: 8.5px !important;
+                line-height: 1.2 !important;
+                font-weight: 700 !important;
             }
             td { 
-                padding: 3px 2px !important; 
-                font-size: 9.5px !important;
+                padding: 2px 1px !important; 
+                font-size: 8.5px !important;
+                line-height: 1.2 !important;
             }
             
-            /* الصور */
+            /* عمود الرقم التسلسلى ضيق */
+            #loading_table th:first-child, #loading_table td:first-child,
+            #deposit_table th:first-child, #deposit_table td:first-child {
+                width: 22px !important;
+            }
+            
+            /* عمود التوصيف يأخد المساحة الأكبر */
+            .load-desc, .dep-desc {
+                font-size: 8px !important;
+            }
+            
+            /* ═══ الصور أصغر ═══ */
             .img-preview { 
                 display: block !important; 
-                width: 35px !important; 
-                height: 35px !important; 
+                width: 28px !important; 
+                height: 28px !important;
+                margin: 0 auto !important;
             }
             .img-mini-preview { 
-                width: 22px !important; 
-                height: 22px !important; 
+                width: 18px !important; 
+                height: 18px !important;
+                margin: 0.5px !important;
+            }
+            .img-mini { display: none !important; }
+            .img-cell-combined { 
+                padding: 1px !important;
+                white-space: nowrap !important;
             }
             
-            /* الـ section titles أصغر */
-            .section-title { 
-                font-size: 11px !important; 
-                padding: 5px 10px !important;
-                margin: 8px 0 4px 0 !important;
-                page-break-after: avoid;
-            }
-            
-            /* المعلومات والملخص */
+            /* ═══ Header & Section Titles ═══ */
             .header-section {
-                margin-bottom: 6px !important;
-                padding-bottom: 6px !important;
+                margin-bottom: 4px !important;
+                padding-bottom: 3px !important;
             }
-            .main-title { font-size: 14px !important; margin: 2px 0 !important; }
-            .dept-name { font-size: 11px !important; }
-            .revision-info { font-size: 8.5px !important; margin-bottom: 4px !important; }
-            
-            .project-info {
-                padding: 6px 10px !important;
-                margin: 6px 0 !important;
-                gap: 2px 15px !important;
-                page-break-inside: avoid;
+            .main-title { 
+                font-size: 13px !important; 
+                margin: 1px 0 !important;
+                line-height: 1.2 !important;
             }
-            .info-row { font-size: 10px !important; }
-            .info-label { font-size: 10px !important; min-width: 130px !important; }
-            
-            .fin-summary {
-                border: 1px solid var(--success);
-                padding: 6px 10px !important;
+            .dept-name { 
                 font-size: 10px !important;
-                line-height: 1.5 !important;
-                page-break-inside: avoid;
+                line-height: 1.2 !important;
+            }
+            .revision-info { 
+                font-size: 7px !important; 
+                margin-bottom: 3px !important;
+                gap: 4px !important;
             }
             
+            .section-title { 
+                font-size: 10px !important; 
+                padding: 3px 8px !important;
+                margin: 5px 0 2px 0 !important;
+                page-break-after: avoid !important;
+            }
+            
+            /* ═══ معلومات المشروع ═══ */
+            .project-info {
+                padding: 4px 8px !important;
+                margin: 4px 0 !important;
+                gap: 1px 12px !important;
+                page-break-inside: avoid !important;
+                grid-template-columns: 1fr 1fr 1fr !important;
+            }
+            .info-row { 
+                font-size: 8.5px !important;
+                padding: 1px 0 !important;
+            }
+            .info-label { 
+                font-size: 8.5px !important; 
+                min-width: 0 !important;
+                margin-left: 4px !important;
+            }
+            .info-input {
+                font-size: 8.5px !important;
+                padding: 1px !important;
+            }
+            
+            /* ═══ الموقف المالى ═══ */
+            .fin-summary {
+                border: 1px solid var(--success) !important;
+                padding: 4px 8px !important;
+                font-size: 8.5px !important;
+                line-height: 1.4 !important;
+                margin: 4px 0 !important;
+                page-break-inside: avoid !important;
+            }
+            .fin-summary strong { font-size: inherit !important; }
+            .fin-summary small { font-size: 8px !important; }
+            
+            /* ═══ المرفقات ═══ */
             .attachments {
-                padding: 5px !important;
-                gap: 5px !important;
-                page-break-inside: avoid;
+                padding: 4px !important;
+                gap: 4px !important;
+                margin: 4px 0 !important;
+                page-break-inside: avoid !important;
+                grid-template-columns: 1fr 1fr 1fr !important;
             }
             .attach-item {
-                font-size: 9px !important;
-                padding: 4px !important;
+                font-size: 7.5px !important;
+                padding: 3px !important;
+                line-height: 1.3 !important;
             }
             
+            /* ═══ التوقيعات ═══ */
             .signatures {
-                margin-top: 15px !important;
-                padding-top: 8px !important;
-                page-break-inside: avoid;
+                margin-top: 10px !important;
+                padding-top: 5px !important;
+                page-break-inside: avoid !important;
             }
+            .signature-box { width: 45% !important; }
             .sig-line {
-                margin-top: 25px !important;
-                padding-top: 4px !important;
-                font-size: 11px !important;
+                margin-top: 18px !important;
+                padding-top: 3px !important;
+                font-size: 9.5px !important;
             }
-            .sig-sub { font-size: 9px !important; }
+            .sig-sub { font-size: 8px !important; }
             
-            /* تجنب قطع الجداول */
-            table { page-break-inside: auto; }
-            tr { page-break-inside: avoid; page-break-after: auto; }
-            thead { display: table-header-group; }
+            /* ═══ Page break controls ═══ */
+            table { page-break-inside: auto !important; }
+            tr { page-break-inside: avoid !important; page-break-after: auto !important; }
+            thead { display: table-header-group !important; }
+            tfoot { display: table-footer-group !important; }
+            .total-row { page-break-inside: avoid !important; }
             
-            /* سحب رأس الصفحة عند التكرار */
-            .total-row { page-break-inside: avoid; }
+            /* تأكيد الألوان فى الطباعة */
+            .total-row { background: #fef3c7 !important; }
+            .section-title { 
+                background: linear-gradient(135deg, #2c5282 0%, #2b6cb0 100%) !important;
+                color: white !important;
+            }
+            .positive { color: var(--success) !important; }
+            .negative { color: var(--danger) !important; }
+        }
+
+        /* ═══ Print Compact Mode (للداتا الكتيرة) ═══ */
+        @media print {
+            body.print-compact {
+                font-size: 7px !important;
+            }
+            body.print-compact table { font-size: 7px !important; }
+            body.print-compact th { font-size: 7px !important; padding: 2px 1px !important; }
+            body.print-compact td { font-size: 7px !important; padding: 1px !important; }
+            body.print-compact .main-title { font-size: 11px !important; }
+            body.print-compact .dept-name { font-size: 8px !important; }
+            body.print-compact .revision-info { font-size: 6px !important; }
+            body.print-compact .section-title { 
+                font-size: 8.5px !important; 
+                padding: 2px 6px !important;
+                margin: 3px 0 1px 0 !important;
+            }
+            body.print-compact .info-row,
+            body.print-compact .info-label,
+            body.print-compact .info-input { font-size: 7px !important; }
+            body.print-compact .fin-summary { font-size: 7px !important; padding: 3px 6px !important; }
+            body.print-compact .attach-item { font-size: 6.5px !important; padding: 2px !important; }
+            body.print-compact .img-preview { width: 22px !important; height: 22px !important; }
+            body.print-compact .img-mini-preview { width: 14px !important; height: 14px !important; }
+            body.print-compact .sig-line { font-size: 8px !important; margin-top: 12px !important; }
+            body.print-compact .sig-sub { font-size: 6.5px !important; }
         }
 
         /* ═══ LIGHTBOX ═══ */
@@ -804,7 +920,8 @@
 </head>
 <body>
     <div class="action-buttons">
-        <button class="btn-print" onclick="window.print()">🖨️ طباعة</button>
+        <button class="btn-print" onclick="smartPrint()">🖨️ طباعة</button>
+        <button class="btn-print" onclick="smartPrint(true)" style="background:linear-gradient(135deg,#553c9a 0%,#6b46c1 100%); box-shadow:0 4px 12px rgba(85,60,154,0.35);">📄 طباعة مُكثفة</button>
         <button class="btn-backup" onclick="backupData()">💾 نسخ احتياطى</button>
         <label class="btn-restore" style="text-align:center; display:inline-block;">
             📂 استرجاع
@@ -1590,6 +1707,54 @@
             }
 
             summaryDiv.innerHTML = summaryHTML;
+        }
+
+        // ═══════════════════════════════════════════════════
+        // الطباعة الذكية
+        // ═══════════════════════════════════════════════════
+        function smartPrint(compact) {
+            compact = compact || false;
+            
+            // عدّ الصفوف لتقدير حجم الداتا
+            const loadingRows = document.querySelectorAll('#loading_table tbody tr:not(.total-row)').length;
+            const depositRows = document.querySelectorAll('#deposit_table tbody tr:not(.total-row)').length;
+            const totalRows = loadingRows + depositRows;
+
+            // اقتراح للمستخدم لو الداتا كتيرة وضغط طباعة عادية
+            if (!compact && totalRows > 8) {
+                const useCompact = confirm(
+                    `📄 لديك ${totalRows} صف من البيانات.\n\n` +
+                    `للحصول على طباعة فى صفحة واحدة، يُفضّل استخدام "الطباعة المُكثفة".\n\n` +
+                    `اضغط "موافق" للطباعة المُكثفة (مفضل)\n` +
+                    `اضغط "إلغاء" للطباعة العادية`
+                );
+                if (useCompact) compact = true;
+            }
+
+            // تذكير المستخدم بإعدادات الطباعة الصحيحة
+            const setupOK = confirm(
+                `🖨️ قبل الطباعة، تأكد من إعدادات الـ Browser:\n\n` +
+                `✅ الاتجاه (Layout): Landscape (أفقى)\n` +
+                `✅ الهوامش (Margins): Default أو Minimum\n` +
+                `✅ المقياس (Scale): Default أو 100%\n` +
+                `✅ Background graphics: مُفعّل (More settings)\n\n` +
+                `اضغط "موافق" للمتابعة.`
+            );
+
+            if (!setupOK) return;
+
+            // تطبيق الـ compact class لو متطلوب
+            if (compact) {
+                document.body.classList.add('print-compact');
+            }
+
+            // فتح الطباعة
+            window.print();
+
+            // إزالة الـ class بعد الطباعة
+            setTimeout(() => {
+                document.body.classList.remove('print-compact');
+            }, 1000);
         }
 
         // ═══════════════════════════════════════════════════
